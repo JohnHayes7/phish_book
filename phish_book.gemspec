@@ -6,12 +6,12 @@ require "phish_book/version"
 Gem::Specification.new do |spec|
   spec.name          = "phish_book"
   spec.version       = PhishBook::VERSION
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["TODO: Write your email address"]
+  spec.authors       = ["John Hayes"]
+  spec.email         = ["JohnnyHayes7@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{"A place when Phish fans can re-live memories"}
+  spec.description   = %q{"A place when Phish fans can re-live memories"}
+  spec.homepage      = "https://github.com/JohnHayes7/phish_book"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -39,4 +39,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "activerecord"
+  spec.add_development_dependency "rack"
+
+  
+
+
 end

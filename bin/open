@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require './lib/arsenalfc_results'
+
+"WELCOME TO PHISH BOOK"
+"WHERE FANS CAN TRY TO REMEMBER ALL THE THINGS THEY FORGOT"
