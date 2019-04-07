@@ -1,0 +1,3 @@
+class PhishBook::Year
+
+end

@@ -2,3 +2,6 @@
 require "./lib/phish_book"
 
  PhishBook::CLI.new.greeting
+#  PhishBook::Scraper.year_scraper.each do |y|
+#     puts "#{y}"
+#  end
