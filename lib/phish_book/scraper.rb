@@ -15,6 +15,10 @@ class PhishBook::Scraper
             years << y
             end
         end
-            years
+        years.each do |y|
+            PhishBook::Year.new(y)
             end
+        end
+
+        
 end
