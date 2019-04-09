@@ -12,7 +12,15 @@ class PhishBook::CLI
     def menu
     puts "Please enter a year between #{PhishBook::Year.all.first.value} & #{PhishBook::Year.all.last.value}"
     puts "Or type 'list' to select from a list of all years"
-    input = gets.strip
+    input = gets.strip.downcase
+        if input.between?(PhishBook::Year.all.first.value, PhishBook::Year.all.last.value)
+        PhishBook::Year.find_by_value(input)
+        puts "Here are the shows from #{input}"
+        elsif input == "list"
+            year_list
+        else
+            menu
+        end
     
     end
 
