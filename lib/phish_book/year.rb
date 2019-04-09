@@ -1,8 +1,9 @@
 class PhishBook::Year
-    attr_accessor :date, :value
+    attr_accessor :date, :value, :shows
 
     @@all = []
     def initialize(year)
+        @shows = []
         @value = year
         @@all << self
     end
@@ -17,6 +18,10 @@ class PhishBook::Year
 
     def self.find_by_value(year)
         all.select{|a| a.value == year}
+    end
+
+    def shows
+        @shows
     end
 
 end

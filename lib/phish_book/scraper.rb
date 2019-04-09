@@ -20,5 +20,9 @@ class PhishBook::Scraper
             end
         end
 
+    # def self.show_scraper
+
+    # end
+
         
 end
