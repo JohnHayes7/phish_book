@@ -18,6 +18,9 @@ class PhishBook::CLI
         puts "Here are the shows from #{input}"
         elsif input == "list"
             year_list
+            input = gets.strip.to_i
+            
+
         else
             menu
         end
