@@ -51,7 +51,6 @@ class PhishBook::Scraper
                 end
     
             show_info = day_date_ary.zip(venue_ary, loc_ary)
-            binding.pry
             show_info.each do |info|
                 PhishBook::Show.new("#{info[0]}", "#{info[1]}", "#{info[2]}")
                 end
