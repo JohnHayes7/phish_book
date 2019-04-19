@@ -16,7 +16,6 @@ class PhishBook::CLI
     input = gets.strip.downcase
         if input.between?(PhishBook::Year.all.first.value, PhishBook::Year.all.last.value)
         PhishBook::Scraper.show_info_scraper(input)
-        binding.pry
         # PhishBook::Year.find_by_value(input)
         puts "Here are the shows from #{input}"
         PhishBook::Show.

@@ -13,7 +13,7 @@ class PhishBook::Year
     # end
 
     def self.all
-        @@all.reverse.drop(2)
+        @@all.reverse.drop(1)
     end
 
     def self.find_by_value(year)

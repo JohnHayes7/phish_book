@@ -7,6 +7,7 @@ attr_accessor :year, :songs, :venue, :date, :fans
     @venue = venue
     @location = location
     @@all << self
+    binding.pry
 end
 
 end

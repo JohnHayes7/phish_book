@@ -25,7 +25,7 @@ class PhishBook::Scraper
             # page = Nokogiri::HTML(open(site))
             # date = page.css(".setlist-date").text.split(" ")
     
-            site = "http://phish.net/setlists/?year=1983"
+            site = "http://phish.net/setlists/?year=#{input}"
             page = Nokogiri::HTML(open(site))
             date = page.css(".setlist-date").text.split(" ")
     
@@ -40,8 +40,6 @@ class PhishBook::Scraper
             #VENUE
             venue_ary = []
             loc_ary = []
-            site = "http://phish.net/setlists/?year=1983"
-            page = Nokogiri::HTML(open(site))
             venue = page.css(".hideunder768")
                 venue.each do |v|
                 venue_ary << v.text
@@ -53,9 +51,9 @@ class PhishBook::Scraper
                 end
     
             show_info = day_date_ary.zip(venue_ary, loc_ary)
+            binding.pry
             show_info.each do |info|
                 PhishBook::Show.new("#{info[0]}", "#{info[1]}", "#{info[2]}")
-                binding.pry
                 end
         end
 
