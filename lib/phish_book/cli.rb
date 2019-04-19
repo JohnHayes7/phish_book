@@ -2,8 +2,9 @@ class PhishBook::CLI
 
     
     def greeting
+    
     puts "WELCOME TO PHISH BOOK"
-    puts "WHERE FANS CAN TRY TO REMEMBER ALL THE THINGS THEY FORGOT"
+    puts "WHERE FANS CAN TO REMEMBER ALL THE THINGS THEY FORGOT"
     PhishBook::Scraper.year_scraper
     menu
     
@@ -14,12 +15,14 @@ class PhishBook::CLI
     puts "Or type 'list' to select from a list of all years"
     input = gets.strip.downcase
         if input.between?(PhishBook::Year.all.first.value, PhishBook::Year.all.last.value)
-        PhishBook::Year.find_by_value(input)
+        PhishBook::Scraper.show_info_scraper(input)
+        binding.pry
+        # PhishBook::Year.find_by_value(input)
         puts "Here are the shows from #{input}"
+        PhishBook::Show.
         elsif input == "list"
             year_list
             input = gets.strip.to_i
-            
 
         else
             menu

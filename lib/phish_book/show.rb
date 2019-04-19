@@ -1,10 +1,12 @@
 class PhishBook::Show
 attr_accessor :year, :songs, :venue, :date, :fans
-
-    def initialize(date, venue)
-        @songs = []
-        @date = date
-        @venue = venue
-    end
+ @@all = []
+ def initialize(day_date, venue, location)
+    @songs = []
+    @day_date = day_date
+    @venue = venue
+    @location = location
+    @@all << self
+end
 
 end
