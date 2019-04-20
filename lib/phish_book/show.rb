@@ -1,5 +1,5 @@
 class PhishBook::Show
-attr_accessor :year, :songs, :venue, :date, :fans
+attr_accessor :year, :songs, :venue, :day_date, :fans, :location
     @@all = []
     def initialize(day_date, venue, location)
         @songs = []
@@ -13,7 +13,7 @@ attr_accessor :year, :songs, :venue, :date, :fans
     def add_to_year
         year = PhishBook::Year.all.detect {|y| y.value == @day_date.split(" ")[1].split("/").last}
         year.shows << self
-        binding.pry
+       
     end
 
     def self.all

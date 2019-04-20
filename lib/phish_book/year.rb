@@ -17,7 +17,7 @@ class PhishBook::Year
     end
 
     def self.find_by_value(year)
-        all.select{|a| a.value == year}
+        all.detect{|a| a.value == year}
     end
 
    
