@@ -11,7 +11,7 @@ attr_accessor :year, :songs, :venue, :date, :fans
     end
 
     def add_to_year
-        year = PhishBook::year.all.select {|y| y == @day_date.split(" ")[1].split("/").last}
+        year = PhishBook::Year.all.detect {|y| y.value == @day_date.split(" ")[1].split("/").last}
         year.shows << self
         binding.pry
     end

@@ -20,8 +20,5 @@ class PhishBook::Year
         all.select{|a| a.value == year}
     end
 
-    def shows
-        @shows
-    end
-
+   
 end
