@@ -17,12 +17,7 @@ class PhishBook::CLI
     puts "Or type 'list' to select from a list of all years"
     input = gets.strip.downcase
         if input.between?(PhishBook::Year.all.first.value, PhishBook::Year.all.last.value)
-            PhishBook::Scraper.show_info_scraper(input)
-            year = PhishBook::Year.find_by_value(input)
-            puts "Here are the shows from #{input}"
-            year.shows.reverse.each_with_index do |s, i|
-                puts "#{i+1}. #{s.day_date} - #{s.venue} - #{s.location}"
-            end
+            get_shows(input)
             puts "Would you like to check out more shows? (Y/N)"
             input = gets.strip.downcase
             more_shows?(input)
@@ -41,6 +36,15 @@ class PhishBook::CLI
 
     def year_list
     PhishBook::Year.all.each_with_index{|y, i| puts "#{i+1}.#{y.value}"}
+    end
+
+    def get_shows(input)
+        PhishBook::Scraper.show_info_scraper(input)
+            year = PhishBook::Year.find_by_value(input)
+            puts "Here are the shows from #{input}"
+            year.shows.reverse.each_with_index do |s, i|
+                puts "#{i+1}. #{s.day_date} - #{s.venue} - #{s.location}"
+            end
     end
 
     def more_shows?(input)
