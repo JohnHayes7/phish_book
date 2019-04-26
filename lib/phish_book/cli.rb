@@ -49,6 +49,11 @@ class PhishBook::CLI
             end
     end
 
+    def find_sets_by_id
+
+        input = gets.strip
+    end
+
 
     def more_shows?(input)
         if input == "y"

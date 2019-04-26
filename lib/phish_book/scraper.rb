@@ -56,5 +56,29 @@ class PhishBook::Scraper
                 end
         end
 
+        def self.set_scraper(year)
+            formatted_sets = []
+            set = []
+            site = "http://phish.net/setlists/?year=#{year}"
+            page = Nokogiri::HTML(open(site))
+            songs = page.css("div.setlist-body")
+            songs.each do |s|
+                set << s.text.split.join(" ")      
+            end
+            
+            set.each do |s|
+                s.split.each do |word|
+                    if  word.match(/\W\d\W/) #=> THIS REGEX WORKS!
+                        word.gsub!(/\W\d\W/, "")
+                    end
+                formatted_sets << s
+                binding.pry
+                end
+            end
+            
+            
+
+        end
+
         
 end
