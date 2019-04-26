@@ -7,17 +7,25 @@ attr_accessor :year, :songs, :venue, :day_date, :fans, :location
         @venue = venue
         @location = location
         @@all << self
-        add_to_year
+        add_year
+        add_songs
     end
 
-    def add_to_year
+    def add_year
         year = PhishBook::Year.all.detect {|y| y.value == @day_date.split(" ")[1].split("/").last}
         year.shows << self
+        self.year = year
        
     end
 
     def self.all
         @@all
+    end
+
+    def add_songs
+        binding.pry
+        year = self.year.value
+        sets = PhishBook::Scraper.set_scraper(year)
     end
 
 end

@@ -34,9 +34,11 @@ class PhishBook::CLI
     
     end
 
+
     def year_list
     PhishBook::Year.all.each_with_index{|y, i| puts "#{i+1}.#{y.value}"}
     end
+
 
     def get_shows(input)
         PhishBook::Scraper.show_info_scraper(input)
@@ -47,6 +49,7 @@ class PhishBook::CLI
             end
     end
 
+
     def more_shows?(input)
         if input == "y"
             menu
@@ -55,6 +58,7 @@ class PhishBook::CLI
 
         end
     end
+    
 
     def about 
         puts "About Section -- FILL IN WHAT PHISH BOOK IS ALL ABOUT"
