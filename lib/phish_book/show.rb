@@ -1,7 +1,8 @@
 class PhishBook::Show
-attr_accessor :year, :songs, :venue, :day_date, :fans, :location
+attr_accessor :year, :songs, :venue, :day_date, :fans, :location, :memories
     @@all = []
     def initialize(day_date, venue, location, set)
+        @memories = []
         @songs = set
         @day_date = day_date
         @venue = venue
