@@ -57,12 +57,7 @@ class PhishBook::CLI
             puts "#{year.shows.reverse[show_input - 1].songs}"
     end
 
-    # def display_show(input)
-    #     PhishBook::Show.find_show_by_id(input)
-
-    # end
-
-
+    
     def more_shows?(input)
         if input == "y"
             menu
