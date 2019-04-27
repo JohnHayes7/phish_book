@@ -28,7 +28,8 @@ class PhishBook::Scraper
             site = "http://phish.net/setlists/?year=#{input}"
             page = Nokogiri::HTML(open(site))
             date = page.css(".setlist-date").text.split(" ")
-    
+            
+            #DATE
             day_date_ary = []
             date_info = date.delete_if{|d| d.include?("PHISH")}
             date_ary = date_info.each_slice(2).map{|d| "#{d.first} #{d.last}"}
@@ -49,22 +50,18 @@ class PhishBook::Scraper
                 city_state.each do |c|
                 loc_ary << c.text.split(" ").join(" ")
                 end
+
+            #SETS
+            sets_ary = []
+            songs = page.css("div.setlist-body")
+            songs.each {|s| sets_ary << s.text.split.join(" ")}   
+            sets_ary
+
     
-            show_info = day_date_ary.zip(venue_ary, loc_ary)
+            show_info = day_date_ary.zip(venue_ary, loc_ary, sets_ary)
             show_info.each do |info|
-                PhishBook::Show.new("#{info[0]}", "#{info[1]}", "#{info[2]}")
+                PhishBook::Show.new("#{info[0]}", "#{info[1]}", "#{info[2]}", "#{info[3]}")
                 end
         end
-
-        def self.set_scraper(year)
-            formatted_sets = []
-            sets_by_year = []
-            site = "http://phish.net/setlists/?year=#{year}"
-            page = Nokogiri::HTML(open(site))
-            songs = page.css("div.setlist-body")
-            songs.each {|s| sets_by_year << s.text.split.join(" ")}   
-            sets_by_year
-        end
-
         
 end
