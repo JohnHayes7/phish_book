@@ -25,6 +25,7 @@ attr_accessor :year, :songs, :venue, :day_date, :fans, :location
     def add_songs
         year = self.year.value
         sets = PhishBook::Scraper.set_scraper(year)
+        binding.pry
     end
 
 end
