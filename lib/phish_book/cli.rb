@@ -17,19 +17,12 @@ class PhishBook::CLI
     puts "Or type 'list' to select from a list of all years"
     input = gets.strip.downcase
         if input.between?(PhishBook::Year.all.first.value, PhishBook::Year.all.last.value)
-
-            
             get_shows(input)
-
-            puts "Would you like to check out more shows? (Y/N)"
-            input = gets.strip.downcase
-            more_shows?(input)
-           
+            more_shows?
         elsif input == "list"
             year_list
             list_mode
-            
-        
+            more_shows?
         elsif input == "about"
             about
         else
@@ -66,7 +59,9 @@ class PhishBook::CLI
     end
 
     
-    def more_shows?(input)
+    def more_shows?
+        puts "Would you like to see more shows? (Y/N)"
+        input = gets.strip.downcase
         if input == "y"
             menu
         elsif input == "n"
