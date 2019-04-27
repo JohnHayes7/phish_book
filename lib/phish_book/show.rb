@@ -8,7 +8,6 @@ attr_accessor :year, :songs, :venue, :day_date, :fans, :location
         @location = location
         @@all << self
         add_year
-        binding.pry
     end
 
     def add_year
@@ -17,6 +16,15 @@ attr_accessor :year, :songs, :venue, :day_date, :fans, :location
         self.year = year
        
     end
+
+    def self.find_show_by_id(input)
+        @@all.detect do |s|
+            binding.pry
+        end
+    end
+
+
+
 
     def self.all
         @@all

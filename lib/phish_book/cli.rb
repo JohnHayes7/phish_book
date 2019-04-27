@@ -17,7 +17,12 @@ class PhishBook::CLI
     puts "Or type 'list' to select from a list of all years"
     input = gets.strip.downcase
         if input.between?(PhishBook::Year.all.first.value, PhishBook::Year.all.last.value)
+            puts "Please select the number of show you'd like to revisit:"
             get_shows(input)
+            puts "which show would you like to see?"
+            input = gets.strip
+            display_show(input)
+
             puts "Would you like to check out more shows? (Y/N)"
             input = gets.strip.downcase
             more_shows?(input)
@@ -49,9 +54,9 @@ class PhishBook::CLI
             end
     end
 
-    def find_sets_by_id
+    def display_show(input)
+        PhishBook::Show.find_show_by_id(input)
 
-        input = gets.strip
     end
 
 
@@ -60,6 +65,9 @@ class PhishBook::CLI
             menu
         elsif input == "n"
             puts "Come back soon to add or check out more memories"
+        else
+            puts "please make a valid selection"
+            menu
 
         end
     end
@@ -68,12 +76,7 @@ class PhishBook::CLI
     def about 
         puts "About Section -- FILL IN WHAT PHISH BOOK IS ALL ABOUT"
         puts "Would you like to see some shows (Y/N)"
-            input = gets.strip.downcase
-            if input == "y"
-                menu 
-            else
-                puts "Thanks for visiting, come back soon to revisit more shows"
-            end
+            more_shows
     end
 
 end
