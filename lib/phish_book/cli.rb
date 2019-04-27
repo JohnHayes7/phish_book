@@ -27,7 +27,8 @@ class PhishBook::CLI
            
         elsif input == "list"
             year_list
-            input = gets.strip.to_i
+            list_mode
+            
         
         elsif input == "about"
             about
@@ -40,6 +41,13 @@ class PhishBook::CLI
 
     def year_list
     PhishBook::Year.all.each_with_index{|y, i| puts "#{i+1}.#{y.value}"}
+    end
+
+    def list_mode
+        puts "Please enter the number of the year you'd like to revisit"
+        input = gets.to_i
+        year = PhishBook::Year.all[input - 1].value
+        get_shows(year)
     end
 
 
