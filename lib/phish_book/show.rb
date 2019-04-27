@@ -18,9 +18,11 @@ attr_accessor :year, :songs, :venue, :day_date, :fans, :location
     end
 
     def self.find_show_by_id(input)
-        @@all.detect do |s|
-            binding.pry
-        end
+        
+        puts " "
+        puts "#{@@all[input.to_i - 1].day_date} - #{@@all[input.to_i - 1].venue} - #{@@all[input.to_i - 1].location}"
+        puts "#{@@all[input.to_i - 1].songs}"
+        puts " "
     end
 
 
