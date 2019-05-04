@@ -12,7 +12,8 @@ class PhishBook::CLI
 
     def menu
         puts "Please enter 'about' to learn more about the Phish Book Project"
-        puts "Or if you would like to revisit some shows please follow the directions below--->"
+        create_account?
+        puts "To revisit some shows please follow the directions below--->"
         puts "Please enter a year between #{PhishBook::Year.all.first.value} & #{PhishBook::Year.all.last.value}"
         puts "Or type 'list' to select from a list of all years"
         input = gets.strip.downcase
@@ -31,6 +32,18 @@ class PhishBook::CLI
     
     end
 
+    def create_account?
+        puts "Would you like create an account or login? (Y/N)"
+        input = gets.strip.downcase
+            if input == "y"
+                PhishBook::Fan.create_fan
+            elsif input == "n"
+                puts "Ok, you can always create an account later..."
+            else
+                puts "Please make a valid selection enter y or n"
+                create_account?
+            end
+    end
 
     def year_list
         PhishBook::Year.all.each_with_index{|y, i| puts "#{i+1}.#{y.value}"}
@@ -39,8 +52,13 @@ class PhishBook::CLI
     def list_mode
         puts "Please enter the number of the year you'd like to revisit"
         input = gets.to_i
-        year = PhishBook::Year.all[input - 1].value
-        get_shows(year)
+        if input.between?(1, PhishBook::Year.all.count)
+            year = PhishBook::Year.all[input - 1].value
+            get_shows(year)
+        else
+            puts "please make a valid selection:"
+            list_mode
+        end
     end
 
 
@@ -57,15 +75,7 @@ class PhishBook::CLI
             puts "#{year.shows.reverse[show_input - 1].day_date} - #{year.shows.reverse[show_input - 1].venue} - #{year.shows.reverse[show_input - 1].location}"
             puts "#{year.shows.reverse[show_input - 1].songs}"
             puts " "
-            puts "#{year.shows.reverse[show_input - 1].memories}"
-            # puts "Memories:"
-            #     if !year.shows.memories.length > 0
-            #         puts "There are no memories for this show yet.  Be the first!"
-            #     else
-            #         year.shows.memories.each_with_index do |m, i|
-            #             puts "#{i+1}. #{m}"
-            #         end
-            #     end    
+            puts "#{year.shows.reverse[show_input - 1].memories}"   
     end
 
     
