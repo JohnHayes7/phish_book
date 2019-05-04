@@ -85,14 +85,17 @@ class PhishBook::CLI
         input = gets.strip.downcase
         if input == 'y'
             current_show.add_fan(PhishBook::Fan.all.last)
+            add_memory(current_show)
         elsif input == 'n'
             "Ok"
         end
         binding.pry
     end
 
-    def add_memory
-
+    def add_memory(current_show)
+        puts "Please add your memory below:"
+        input = gets
+        current_show.add_memory(input)
     end
 
     
