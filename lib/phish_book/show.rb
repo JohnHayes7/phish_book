@@ -3,6 +3,7 @@ attr_accessor :year, :songs, :venue, :day_date, :fans, :location, :memories
     @@all = []
     def initialize(day_date, venue, location, set)
         @memories = []
+        @fans = []
         @songs = set
         @day_date = day_date
         @venue = venue
@@ -28,6 +29,11 @@ attr_accessor :year, :songs, :venue, :day_date, :fans, :location, :memories
                 puts "#{i+1}. #{m}"
             end
         end
+    end
+
+
+    def add_fan(fan)
+        @fans << fan
     end
 
 

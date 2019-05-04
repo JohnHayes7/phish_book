@@ -1,5 +1,5 @@
 class PhishBook::Fan
-attr_accessor :name, :memories
+attr_accessor :name, :memories, :attended_shows
 
     @@all = []
     def initialize(name)
@@ -19,6 +19,19 @@ attr_accessor :name, :memories
             self.create_fan   
         end   
     end
+
+    def self.all
+        @@all
+    end
+
+    # def attended_shows
+
+    # end
+
+    # def leave_memory(show)
+
+        
+    # end
 
     def leave_memory(input)
         puts "#{input}"

@@ -41,7 +41,8 @@ TO DO LIST:
 :4/29/19
 Would you like to see more shows from #{current_year}?  You can also go back to the menu for shows from other years or exit to exit
 Build: Before/Next Show Function
-<!-- Finish Memory functionality -->
+<!-- Finish Memory Display functionality -->
+Add Memories to Shows and Relate to Fans
 Setup and persist data to DB
 Clean-up Sets Format-remove "['']"
-Build out users
+<!-- Build out users -->

@@ -64,18 +64,35 @@ class PhishBook::CLI
 
     def get_shows(input)
         PhishBook::Scraper.show_info_scraper(input)
-            year = PhishBook::Year.find_by_value(input)
-            puts "Here are the shows from #{input}"
-            year.shows.reverse.each_with_index do |s, i|
-                puts "#{i+1}. #{s.day_date} - #{s.venue} - #{s.location}"
-            end
-            puts "Please select the number of show you'd like to revisit:"
-            show_input = gets.strip.to_i
-            puts " "
-            puts "#{year.shows.reverse[show_input - 1].day_date} - #{year.shows.reverse[show_input - 1].venue} - #{year.shows.reverse[show_input - 1].location}"
-            puts "#{year.shows.reverse[show_input - 1].songs}"
-            puts " "
-            puts "#{year.shows.reverse[show_input - 1].memories}"   
+        year = PhishBook::Year.find_by_value(input)
+        puts "Here are the shows from #{input}"
+        year.shows.reverse.each_with_index do |s, i|
+            puts "#{i+1}. #{s.day_date} - #{s.venue} - #{s.location}"
+        end
+        puts "Please select the number of show you'd like to revisit:"
+        show_input = gets.strip.to_i
+        current_show = year.shows.reverse[show_input - 1]
+        puts " "
+        puts "#{current_show.day_date} - #{current_show.venue} - #{current_show.location}"
+        puts "#{current_show.songs}"
+        puts " "
+        puts "#{current_show.memories}"   
+        attended?(current_show)
+    end
+
+    def attended?(current_show)
+        puts "Did you attend this show?  Would you like to leave a memory?"
+        input = gets.strip.downcase
+        if input == 'y'
+            current_show.add_fan(PhishBook::Fan.all.last)
+        elsif input == 'n'
+            "Ok"
+        end
+        binding.pry
+    end
+
+    def add_memory
+
     end
 
     
@@ -92,6 +109,8 @@ class PhishBook::CLI
 
         end
     end
+
+    
 
     def this_year?
         puts "would you like to more shows from this"
