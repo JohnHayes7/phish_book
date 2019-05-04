@@ -3,37 +3,37 @@ class PhishBook::CLI
     
     def greeting
     
-    puts "*************-WELCOME TO PHISH BOOK-*****************"
-    puts "WHERE FANS CAN TO REMEMBER ALL THE THINGS THEY FORGOT"
-    PhishBook::Scraper.year_scraper
-    menu
+        puts "*************-WELCOME TO PHISH BOOK-*****************"
+        puts "WHERE FANS CAN TO REMEMBER ALL THE THINGS THEY FORGOT"
+        PhishBook::Scraper.year_scraper
+        menu
     
     end
 
     def menu
-    puts "Please enter 'about' to learn more about the Phish Book Project"
-    puts "Or if you would like to revisit some shows please follow the directions below--->"
-    puts "Please enter a year between #{PhishBook::Year.all.first.value} & #{PhishBook::Year.all.last.value}"
-    puts "Or type 'list' to select from a list of all years"
-    input = gets.strip.downcase
-        if input.between?(PhishBook::Year.all.first.value, PhishBook::Year.all.last.value)
-            get_shows(input)
-            more_shows?
-        elsif input == "list"
-            year_list
-            list_mode
-            more_shows?
-        elsif input == "about"
-            about
-        else
-            menu
-        end
+        puts "Please enter 'about' to learn more about the Phish Book Project"
+        puts "Or if you would like to revisit some shows please follow the directions below--->"
+        puts "Please enter a year between #{PhishBook::Year.all.first.value} & #{PhishBook::Year.all.last.value}"
+        puts "Or type 'list' to select from a list of all years"
+        input = gets.strip.downcase
+            if input.between?(PhishBook::Year.all.first.value, PhishBook::Year.all.last.value)
+                get_shows(input)
+                more_shows?
+            elsif input == "list"
+                year_list
+                list_mode
+                more_shows?
+            elsif input == "about"
+                about
+            else
+                menu
+            end
     
     end
 
 
     def year_list
-    PhishBook::Year.all.each_with_index{|y, i| puts "#{i+1}.#{y.value}"}
+        PhishBook::Year.all.each_with_index{|y, i| puts "#{i+1}.#{y.value}"}
     end
 
     def list_mode
@@ -56,6 +56,16 @@ class PhishBook::CLI
             puts " "
             puts "#{year.shows.reverse[show_input - 1].day_date} - #{year.shows.reverse[show_input - 1].venue} - #{year.shows.reverse[show_input - 1].location}"
             puts "#{year.shows.reverse[show_input - 1].songs}"
+            puts " "
+            puts "#{year.shows.reverse[show_input - 1].memories}"
+            # puts "Memories:"
+            #     if !year.shows.memories.length > 0
+            #         puts "There are no memories for this show yet.  Be the first!"
+            #     else
+            #         year.shows.memories.each_with_index do |m, i|
+            #             puts "#{i+1}. #{m}"
+            #         end
+            #     end    
     end
 
     
@@ -71,6 +81,10 @@ class PhishBook::CLI
             menu
 
         end
+    end
+
+    def this_year?
+        puts "would you like to more shows from this"
     end
     
 

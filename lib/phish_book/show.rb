@@ -19,6 +19,17 @@ attr_accessor :year, :songs, :venue, :day_date, :fans, :location, :memories
        
     end
 
+    def memories
+        puts "Memories:"
+        if @memories.length == 0
+            puts "There are no memories for this show yet.  Be the first!"
+        else
+            @memories.each_with_index do |m, i|
+                puts "#{i+1}. #{m}"
+            end
+        end
+    end
+
 
     def self.all
         @@all
