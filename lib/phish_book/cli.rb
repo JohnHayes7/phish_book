@@ -6,30 +6,14 @@ class PhishBook::CLI
         puts "*************-WELCOME TO PHISH BOOK-*****************"
         puts "WHERE FANS CAN TO REMEMBER ALL THE THINGS THEY FORGOT"
         PhishBook::Scraper.year_scraper
+        create_account?
         menu
     
     end
 
     def menu
         puts "Please enter 'about' to learn more about the Phish Book Project"
-        create_account?
-        puts "To revisit some shows please follow the directions below--->"
-        puts "Please enter a year between #{PhishBook::Year.all.first.value} & #{PhishBook::Year.all.last.value}"
-        puts "Or type 'list' to select from a list of all years"
-        input = gets.strip.downcase
-            if input.between?(PhishBook::Year.all.first.value, PhishBook::Year.all.last.value)
-                get_shows(input)
-                more_shows?
-            elsif input == "list"
-                year_list
-                list_mode
-                more_shows?
-            elsif input == "about"
-                about
-            else
-                menu
-            end
-    
+        view_shows?
     end
 
     def create_account?
@@ -49,6 +33,27 @@ class PhishBook::CLI
         PhishBook::Year.all.each_with_index{|y, i| puts "#{i+1}.#{y.value}"}
     end
 
+
+    def view_shows?
+        puts "To revisit some shows please follow the directions below--->"
+        puts "Please enter a year between #{PhishBook::Year.all.first.value} & #{PhishBook::Year.all.last.value}"
+        puts "Or type 'list' to select from a list of all years"
+        input = gets.strip.downcase
+            if input.between?(PhishBook::Year.all.first.value, PhishBook::Year.all.last.value)
+                get_shows(input)
+                more_shows?
+            elsif input == "list"
+                year_list
+                list_mode
+                more_shows?
+            elsif input == "about"
+                about
+            else
+                menu
+            end
+    end
+
+
     def list_mode
         puts "Please enter the number of the year you'd like to revisit"
         input = gets.to_i
@@ -61,7 +66,7 @@ class PhishBook::CLI
         end
     end
 
-
+    
     def get_shows(input)
         PhishBook::Scraper.show_info_scraper(input)
         year = PhishBook::Year.find_by_value(input)
@@ -76,9 +81,10 @@ class PhishBook::CLI
         puts "#{current_show.day_date} - #{current_show.venue} - #{current_show.location}"
         puts "#{current_show.songs}"
         puts " "
-        puts "#{current_show.memories}"   
+        puts "#{current_show.display_memories}"   
         attended?(current_show)
     end
+
 
     def attended?(current_show)
         puts "Did you attend this show?  Would you like to leave a memory?"
@@ -89,8 +95,9 @@ class PhishBook::CLI
         elsif input == 'n'
             "Ok"
         end
-        binding.pry
+        
     end
+
 
     def add_memory(current_show)
         puts "Please add your memory below:"

@@ -20,7 +20,7 @@ attr_accessor :year, :songs, :venue, :day_date, :fans, :location, :memories
        
     end
 
-    def memories
+    def display_memories
         puts "Memories:"
         if @memories.length == 0
             puts "There are no memories for this show yet.  Be the first!"
@@ -29,6 +29,10 @@ attr_accessor :year, :songs, :venue, :day_date, :fans, :location, :memories
                 puts "#{i+1}. #{m}"
             end
         end
+    end
+
+    def add_memory(input)
+        @memories << input
     end
 
 

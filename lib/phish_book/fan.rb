@@ -4,6 +4,7 @@ attr_accessor :name, :memories, :attended_shows
     @@all = []
     def initialize(name)
         @name = name
+        @attended_shows = []
         @memories = []
         @@all << self
     end
@@ -32,12 +33,6 @@ attr_accessor :name, :memories, :attended_shows
 
         
     # end
-
-    def leave_memory(input)
-        puts "#{input}"
-
-    end
-
 
 
 end
